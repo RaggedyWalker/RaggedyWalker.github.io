@@ -15,6 +15,7 @@
             text-decoration: none;
             border: none;
         }
+
         a {
             color: unset;
         }
@@ -47,6 +48,7 @@
         .left .titleList {
             margin-left: 2rem;
         }
+
         .left .title {
             width: 100%;
             color: #666666;
@@ -59,6 +61,7 @@
             font-size: 2.4rem;
             font-weight: bold;
         }
+
         .left .title :visited {
             color: unset;
         }
@@ -93,13 +96,14 @@
 </div>
 
 <script>
+    const root = '/pages/'
     let pageFrame = document.querySelector('#page')
     document.querySelector('.titleList').addEventListener('click', function (event) {
         event.preventDefault()
         let target = event.target
         // debugger
         if (target.tagName == 'A') {
-            pageFrame.src = target.getAttribute('href')
+            pageFrame.src = root + target.getAttribute('href')
         }
     })
 </script>
