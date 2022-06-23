@@ -26,11 +26,12 @@
 
         .container {
             flex: 1;
+            /*display: flex;*/
+            /*flex-direction: column;*/
+            position: relative;
+            /*align-items: center;*/
             height: 100vh;
-            display: flex;
-            flex-direction: column;
             /*justify-content: space-around;*/
-            align-items: center;
         }
 
         .left {
@@ -39,10 +40,6 @@
             flex-direction: column;
             align-items: start;
             background-color: #e7eaed;
-        }
-
-        .left a span {
-            /*display: block;*/
         }
 
         .left .titleList {
@@ -70,6 +67,46 @@
             width: 100%;
             height: 100vh;
         }
+
+        #loading {
+            width: 100%;
+            height: 100vh;
+            /*opacity: 0.4;*/
+            position: absolute;
+            top: 0;
+            z-index: 999;
+            animation-name: load;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease;
+            animation-direction: alternate-reverse;
+            background: linear-gradient(to right, #7ee0c7, #2a90de, #62d9be);
+            background-size: 200% 200%;
+            /*background-position: 100% 0;*/
+
+        }
+
+        @keyframes load {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            25% {
+                background-position: 25% 0%;
+            }
+
+            50% {
+                background-position: 50% 0%;
+            }
+
+            75% {
+                background-position: 75% 0%;
+            }
+            100% {
+                background-position: 100% 0%;
+            }
+
+        }
     </style>
 </head>
 <body>
@@ -91,21 +128,37 @@
         </div>
     </div>
     <div class="container">
-        <iframe id="page" src=""></iframe>
+        <iframe id="page" src="3%20HTML篇.html" frameborder="0" scrolling="" onload="closeLoading()"></iframe>
     </div>
 </div>
 
 <script>
+
+    function startLoading() {
+
+        const load = document.createElement("div");
+        load.id = 'loading'
+        pageFrame.after(load)
+    }
+
+    function closeLoading() {
+        // setTimeout(()=>{
+            document.querySelector('#loading').remove()
+        // },5000)
+    }
+
     const root = '/pages/'
     let pageFrame = document.querySelector('#page')
     document.querySelector('.titleList').addEventListener('click', function (event) {
         event.preventDefault()
         let target = event.target
         // debugger
-        if (target.tagName == 'A') {
+        if (target.tagName === 'A') {
             pageFrame.src = root + target.getAttribute('href')
+            startLoading()
         }
     })
+
 </script>
 </body>
 </html>
