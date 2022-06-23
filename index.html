@@ -68,19 +68,16 @@
         #loading {
             width: 100%;
             height: 100%;
-            /*opacity: 0.4;*/
             position: absolute;
             top: 0;
             z-index: 999;
             animation-name: load;
-            animation-duration: 2s;
+            animation-duration: 1s;
             animation-iteration-count: infinite;
             animation-timing-function: ease;
-            animation-direction: alternate-reverse;
-            background: linear-gradient(to right, #7ee0c7, #2a90de, #62d9be);
-            background-size: 200% 200%;
-            /*background-position: 100% 0;*/
-
+            animation-direction: reverse;
+            background: linear-gradient(to right, rgba(249, 252, 251, 0.67), #3b90d3, rgba(249, 252, 251, 0.67));
+            background-size: 200% 100%;
         }
 
         @keyframes load {
@@ -139,9 +136,9 @@
     }
 
     function closeLoading() {
-        setTimeout(()=>{
+        // setTimeout(()=>{
             document.querySelector('#loading').remove()
-        },5000)
+        // },1000)
     }
 
     const root = '/pages/'
