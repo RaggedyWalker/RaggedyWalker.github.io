@@ -42,6 +42,10 @@
         .left .titleList {
             margin-left: 2rem;
         }
+        .left .titleList > .active {
+            font-size: 2.4rem;
+            font-weight: bold;
+        }
 
         .left .title {
             width: 100%;
@@ -51,9 +55,12 @@
             height: 5rem;
         }
 
+        .left .title a {
+            display: block;
+        }
+
         .left .title :focus {
-            font-size: 2.4rem;
-            font-weight: bold;
+            transition: font-weight 200ms linear, font-size 200ms linear;
         }
 
         .left .title :visited {
@@ -137,7 +144,7 @@
 
     function closeLoading() {
         // setTimeout(()=>{
-            document.querySelector('#loading').remove()
+        document.querySelector('#loading').remove()
         // },1000)
     }
 
@@ -146,12 +153,27 @@
     document.querySelector('.titleList').addEventListener('click', function (event) {
         event.preventDefault()
         let target = event.target
-        // debugger
+
+        siblings(target.parentNode).forEach(dom => dom.classList.remove('active'))
+        target.parentNode.classList.add('active')
+
         if (target.tagName === 'A') {
             pageFrame.src = root + target.getAttribute('href')
             startLoading()
         }
     })
+
+    function siblings(element) {
+        let siblingsArr = []
+        let children = element.parentNode.children
+        let len = children.length
+        for (let i = 0; i < len; i++) {
+            if (children[i].nodeType === 1 && children[i] != element) {
+                siblingsArr.push(children[i])
+            }
+        }
+        return siblingsArr
+    }
 
 </script>
 </body>
